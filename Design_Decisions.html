@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Design Decisions</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <ul>
+            <li>
+                1. Once registered, create a lib, libname = "lib" + id;
+                one user has many libs, each table represents a lib.
+            </li>
+            <li>
+                2. Rename, 1st change in user-lib, 2nd change in lib
+            </li>
+            <li>
+                3. Delete, if delete the whole table, just rename the table to trash+libname,
+                once click delete forever, drop table;if delete refs, move to default trash. 
+                Trash name = trash + id;
+            </li>
+            <li>
+                4. Share, if none register user, just show the sample table and what he/she
+                 can do; if register user with a share code, able to see the table content.(could 
+                 he/she copy the refs to his/her own lib?)
+            </li>
+            <li>
+                future. 1. change log 2. ref with an attachment stored on server side,size limit
+                to 100MB per file.(think abou tan xing ku cun,buy 100 and keep another 50)
+            </li>
+        </ul>
+    </body>
+</html>

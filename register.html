@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--
+validate user input
+
+check passwd match
+-->
+<html>
+    <head>
+        <title>Register</title>
+        <script>
+            function submitForm(formId, str, pswd1, pswd2) {
+                if(validateEmail(str) && validatePasswd(pswd1, pswd2)) {
+                    document.getElementById(formId).submit();
+                }
+            }
+            
+            function validateEmail(str) {
+//                alert('in ve');
+                var email  = document.getElementById(str).value;
+//                alert(email);
+                var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
+                document.getElementById('span_email').innerHTML='';
+                if(email === '') {
+                    document.getElementById('span_email').innerHTML='can not be empty';
+                    return false;
+                }else if(reg.test(email)) {
+                    return true;
+                }else {
+                    document.getElementById('span_email').innerHTML='check the format';
+                    return false;
+                } 
+            }
+            
+            function validatePasswd(ps1, ps2) {
+//                alert('in vp');
+                var p1 = document.getElementById(ps1).value;
+                var p2 = document.getElementById(ps2).value;
+                document.getElementById('span_reps').innerHTML='';
+                if(p1 === p2 && p1 !== '') {
+                    return true;
+                }else{
+                    document.getElementById('span_reps').innerHTML='not match';
+                    return false;
+                }
+            }
+            
+        </script>
+    </head>
+    <body>
+        <form action="server_login.php" method="post" id="registerform">
+            <input type="text" name="email" id="email" placeholder="Email"/>
+            <span id="span_email"></span><br/>
+            <input type="password" name="passwd" id="ps" placeholder="Password"/><br/>
+            <input type="password" name="repasswd" id="reps" placeholder="Re-enter Password"/>
+            <span id="span_reps"></span><br/>
+            <input type="hidden" name="status" id="status" value="register"/>
+            <input type="button" name="formbutton" value="register" 
+                   onclick="submitForm('registerform','email','ps','reps');"/>
+        </form>
+
+    </body>
+</html>

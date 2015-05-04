@@ -1,0 +1,31 @@
+
+<html>
+    <head>
+        <link>
+        <title>Login</title>
+        <script>
+            function goToRegister() {window.location = 'register.html';}
+        </script>
+    </head>
+
+    <body>
+        <div>
+            <form action="" method="post">
+                <table>
+                    <tr>
+                        <td>Email : </td>
+                        <td><input name="email" type="text" placeholder="username/Email"/></td>
+                    </tr>
+                    <tr>
+                        <td>Password : </td>
+                        <td><input name="passwd" type="text" placeholder="password"/></td>
+                    </tr>
+                    <tr>
+                        <td><input name="register" type="button" value="Register" onclick="goToRegister()"/></td>
+                        <td><input name="submit" id="submit" type="submit" value="Login"/></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>
