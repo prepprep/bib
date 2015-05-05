@@ -18,11 +18,12 @@ if(isset($_GET['removeArray']) && !empty($_GET['removeArray'])) {
 if (!empty($arr)) {
     $act_id = $_SESSION['id'];
     $act_lib = $_SESSION['active_lib'];
+    $trash = 'trash'.$act_id;
     
     foreach ($arr as $ref) {
         $tref = get_refArray($act_lib, $ref);
-        $libname = 'trash'.$act_id;
-        insertRef($libname, $tref['title'], $tref['author'], $tref['year'], $tref['pdf']);
+        insertRef($trash, $tref['title'], $tref['author'], $tref['year'], $tref['pdf']);
+//        insertRef_trash($trash, $act_lib, $tref['title'], $tref['author'], $tref['year'], $tref['pdf']);
         delete_ref($act_lib, $ref);
     }
 }else {

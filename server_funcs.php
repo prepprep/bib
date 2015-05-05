@@ -203,7 +203,7 @@ function create_trash_table($id) {
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "CREATE TABLE $trashname (
                 trashlibid int(10) NOT NULL AUTO_INCREMENT,
-                libName VARCHAR(25) NOT NULL,
+                libName VARCHAR(25)  ,
                 refid int(10) NOT NULL,
                 title VARCHAR(255) NOT NULL,
                 author VARCHAR(255) NOT NULL,
@@ -274,7 +274,25 @@ function insertRef($libname, $title, $author, $year, $pdf) {
             ':year' => $year,
             ':pdf' => $pdf));
     } catch (Exception $ex) {
-        echo 'in insertRef-- '.$libname . PHP_EOL;
+        echo 'in insertRef' . PHP_EOL;
+        echo $ex->getMessage();
+    }
+}
+
+function insertRef_trash($trash, $libname, $title, $author, $year, $pdf) {
+    try {
+        $connection = new PDO(db_dsn, db_username, db_passwd);
+        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = $connection->prepare("INSERT INTO $trash (libName,title,author,year,pdf) "
+                . "VALUES (:libname,:title,:author,:year,:pdf);");
+        $query->execute(array(
+            ':libname'=>$libname,
+            ':title' => $title,
+            ':author' => $author,
+            ':year' => $year,
+            ':pdf' => $pdf));
+    } catch (Exception $ex) {
+        echo 'in insertRef_trash' . PHP_EOL;
         echo $ex->getMessage();
     }
 }
