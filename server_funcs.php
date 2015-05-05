@@ -203,8 +203,6 @@ function create_trash_table($id) {
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "CREATE TABLE $trashname (
                 trashlibid int(10) NOT NULL AUTO_INCREMENT,
-                libName VARCHAR(25)  ,
-                refid int(10) NOT NULL,
                 title VARCHAR(255) NOT NULL,
                 author VARCHAR(255) NOT NULL,
                 year VARCHAR(25)  NOT NULL,
