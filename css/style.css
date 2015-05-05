@@ -39,7 +39,7 @@ input {
     font-size: 20px;
 }
 
-.login {
+.login, .clear {
     position: relative;
     left: 7%;
     padding-bottom: 200px;;

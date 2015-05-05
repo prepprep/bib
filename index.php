@@ -34,7 +34,9 @@ and open the template in the editor.
                         <input type="submit" name="submit" id="submit" value="Login"/>
                     </form>
                 </div>
-                <div class="clear"></div>
+                <div class="clear">
+                    <a href="StartService.php">Start Service</a>
+                </div>
             </div>
         </div>
         

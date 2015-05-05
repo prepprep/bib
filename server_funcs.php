@@ -176,9 +176,10 @@ function insert_trashlib($id, $tabname) {
 }
 
 function create_table($libname) {
-
-    $link = mysqli_connect(HOST, USERNAME, PASSWD, DBNAME);
-    $sql = "CREATE TABLE $libname (
+    try {
+        $connection = new PDO(db_dsn, db_username, db_passwd);
+        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "CREATE TABLE $libname (
         libid int(10) NOT NULL AUTO_INCREMENT,
         title VARCHAR(255) NOT NULL,
                 author VARCHAR(255) NOT NULL,
@@ -187,15 +188,20 @@ function create_table($libname) {
                 pdf VARCHAR(255),
                 PRIMARY KEY(libid)
             );";
-    mysqli_query($link, $sql) or die(mysqli_error($link));
-    mysqli_close($link);
+        $query = $connection->prepare($sql);
+        $query->execute();
+    } catch (Exception $ex) {
+        echo 'in create_table' . PHP_EOL;
+        echo $ex->getMessage();
+    }
 }
 
 function create_trash_table($id) {
-
     $trashname = 'trash' . $id;
-    $link = mysqli_connect(HOST, USERNAME, PASSWD, DBNAME);
-    $sql = "CREATE TABLE $trashname (
+    try {
+        $connection = new PDO(db_dsn, db_username, db_passwd);
+        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "CREATE TABLE $trashname (
                 trashlibid int(10) NOT NULL AUTO_INCREMENT,
                 libName VARCHAR(25) NOT NULL,
                 refid int(10) NOT NULL,
@@ -206,8 +212,12 @@ function create_trash_table($id) {
                 pdf VARCHAR(255),
                 PRIMARY KEY(trashlibid) 
                 );";
-    mysqli_query($link, $sql) or die(mysqli_error($link));
-    mysqli_close($link);
+        $query = $connection->prepare($sql);
+        $query->execute();
+    } catch (Exception $ex) {
+        echo 'in create_trash_table' . PHP_EOL;
+        echo $ex->getMessage();
+    }
 }
 
 function is_unique_email($email) {

@@ -53,6 +53,8 @@ try {
 
     $query4 = $connection->prepare($sql_table_share);
     $query4->execute();
+    
+    echo "<script>window.location = 'index.php'</script>";
 } catch (Exception $ex) {
     echo 'in start service' . PHP_EOL;
     echo $ex->getMessage();
