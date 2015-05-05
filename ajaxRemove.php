@@ -21,7 +21,8 @@ if (!empty($arr)) {
     
     foreach ($arr as $ref) {
         $tref = get_refArray($act_lib, $ref);
-        insertRef('trash' . $act_id, $tref['title'], $tref['author'], $tref['year'], $tref['pdf']);
+        $libname = 'trash'.$act_id;
+        insertRef($libname, $tref['title'], $tref['author'], $tref['year'], $tref['pdf']);
         delete_ref($act_lib, $ref);
     }
 }else {

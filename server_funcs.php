@@ -274,7 +274,7 @@ function insertRef($libname, $title, $author, $year, $pdf) {
             ':year' => $year,
             ':pdf' => $pdf));
     } catch (Exception $ex) {
-        echo 'in insertRef' . PHP_EOL;
+        echo 'in insertRef-- '.$libname . PHP_EOL;
         echo $ex->getMessage();
     }
 }
